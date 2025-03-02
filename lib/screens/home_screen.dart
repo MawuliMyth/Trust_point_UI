@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:testingscreens/constants.dart';
 
-
+import '../customs/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -18,11 +19,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Welcome James"),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {},
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.help_outline_rounded),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.notifications),
+              ),
+            ],
           ),
         ],
       ),
@@ -30,16 +39,28 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: const [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.green),
-              child: Text("Menu", style: TextStyle(color: Colors.white, fontSize: 24)),
+              child: Image(image: AssetImage('images/logo.png')),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
+              title: Text("Product Listing", style: joeStyles),
             ),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Profile"),
+              title: Text("Order Management", style: joeStyles),
+            ),
+            ListTile(
+              title: Text("Withdrawal", style: joeStyles),
+            ),
+            ListTile(
+              title: Text("Referral", style: joeStyles),
+            ),
+            ListTile(
+              title: Text("Order Status", style: joeStyles),
+            ),
+            ListTile(
+              title: Text("Notifications", style: joeStyles),
+            ),
+            ListTile(
+              title: Text("Rules", style: joeStyles),
             ),
           ],
         ),
@@ -49,16 +70,33 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Transaction History with Inter Font
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('images/jojo.jpg'),
+                  radius: 25,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'Welcome Mawule',
+                  style: TextStyle(
+                    fontFamily: 'Qwerty',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   'Transaction History',
-                   style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 14,
+                      fontFamily: 'Qwerty'),
                 ),
               ],
             ),
@@ -78,12 +116,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Available Balance", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        const Text("Available Balance",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Qwerty')),
                         TextButton(
                           onPressed: () {},
                           child: const Text(
                             "Upgrade To Level2",
-                            style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10,
+                                fontFamily: 'Qwerty'),
                           ),
                         ),
                       ],
@@ -93,7 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           _isBalanceHidden ? "******" : "N780,000",
-                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(width: 8),
                         GestureDetector(
@@ -103,7 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             });
                           },
                           child: Icon(
-                            _isBalanceHidden ? Icons.visibility_off : Icons.visibility,
+                            _isBalanceHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: Colors.black54,
                           ),
                         ),
@@ -115,7 +164,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         const Text(
                           "Pending Earnings",
-                          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              fontFamily: 'Qwerty'),
                         ),
                         const Spacer(), // Pushes the button to the right
                         ElevatedButton(
@@ -123,11 +176,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             // Navigate to Withdraw Page
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(6, 125, 25, 1),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                            backgroundColor:
+                                const Color.fromRGBO(6, 125, 25, 1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 12),
                           ),
-                          child: const Text("Withdraw Fund", style: TextStyle(color: Colors.white)),
+                          child: const Text("Withdraw Fund",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Qwerty',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900)),
                         ),
                       ],
                     ),
@@ -135,44 +196,153 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'View All Status',
+                  style: TextStyle(
+                      fontFamily: 'qwerty',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(width: 10),
+                Icon(Icons.tune)
+              ],
+            ),
+            const SizedBox(height: 10),
+
             // Advertisement Banner
             Container(
-              height: 100,
-              color: Colors.green,
               alignment: Alignment.center,
-              child: const Text("Advertisement Banner", style: TextStyle(color: Colors.white, fontSize: 16)),
+              width: double.infinity,
+              height: 200,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromRGBO(105, 150, 53, 1),
+                    Color.fromRGBO(51, 99, 62, 1)
+                  ], // Two colors
+                  begin: Alignment.topLeft, // Gradient starts from top-left
+                  end: Alignment.bottomRight, // Ends at bottom-right
+                ),
+                borderRadius:
+                    BorderRadius.circular(16), // Optional rounded corners
+              ),
+              child: Text(
+                'Advertisement Banner',
+                style: TextStyle(
+                    fontFamily: 'Qwerty',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
             ),
             const SizedBox(height: 20),
+            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Product Listings',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, fontFamily: 'qwerty'),),
+                IconButton(onPressed: (){}, icon: Icon(Icons.tune),)
+              ],
+            ),
             // Product Listings
-            const Text("Product Listings", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            _buildProductCard("Facebook", "Carolina USA", "1k Followers", "N10"),
-            _buildProductCard("Instagram", "Freetown Capeverde", "102 Followers", "N40"),
-            _buildProductCard("Snapchat", "Abuja Nigeria", "3k Followers", "N50"),
+            ProductCard(
+                name: "Facebook",
+                location: "Carolina USA",
+                followers: "1k",
+                price: "N10",
+                status: "Verified",
+                imagePath: "images/facebook.png",
+                ageTag: "New"),
+            ProductCard(
+                name: "Instagram",
+                location: "Freetown Capeverde",
+                followers: "102",
+                price: "N40",
+                status: "Verified",
+                imagePath: "images/insta.jpeg",
+                ageTag: "Old"),
+            ProductCard(
+                name: "Snapchat",
+                location: "Abuja Nigeria",
+                followers: "3k",
+                price: "N50",
+                status: "Verified",
+                imagePath: "images/snap.jpeg",
+                ageTag: "New"),
+
+    Container(
+    margin: const EdgeInsets.all(16),
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(16),
+    boxShadow: [
+    BoxShadow(
+    color: Colors.grey
+    ),
+    ],
+    ),
+    child: Row(
+    children: [
+    CircleAvatar(
+    backgroundImage: AssetImage('images/money.png'),
+    radius: 25,
+    ),
+    const SizedBox(width: 10),
+    Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: const [
+    Text("Invite And Earn", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+    Text("Invite Users And Earn Commission With The Link", style: TextStyle(color: Colors.grey, fontSize: 12)),
+    ],
+    ),
+    ],
+    ),
+    ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: "Withdraw"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          BottomNavigationBarItem(icon: Icon(Icons.rule), label: "Rules"),
-        ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(6, 125, 25, 1), // Green background
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_circle_down),
+              label: "Withdraw",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.warning_amber_outlined),
+              label: "Rules",
+            ),
+          ],
+        ),
       ),
-    );
-  }
 
-  Widget _buildProductCard(String name, String location, String followers, String price) {
-    return Card(
-      child: ListTile(
-        leading: CircleAvatar(child: Text(name[0])),
-        title: Text(name),
-        subtitle: Text("$location\n$followers"),
-        trailing: Text(price, style: const TextStyle(fontWeight: FontWeight.bold)),
-      ),
     );
   }
 }
